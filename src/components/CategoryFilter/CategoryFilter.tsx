@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ProductCategory } from '../models/ProductCategory';
+import { ProductCategory } from '../../models/ProductCategory';
 import './CategoryFilter.css';
 
 interface CategoryFilterProps {

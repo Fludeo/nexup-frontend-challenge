@@ -109,10 +109,19 @@ Este enfoque hace que la lógica de filtros sea más expresiva y performante, es
 
 El diseño se pensó para ser **responsive** y legible en distintos anchos:
 
-- `ProductManager` centra el contenido y aplica un fondo neutro a toda la vista.
-- `CategoryFilter` y `ProductList` trabajan con un `max-width` compartido y `margin: 0 auto` para mantenerse centrados en pantallas grandes.
-- `ProductList` cambia de **columna única** en mobile a **dos columnas** en pantallas grandes usando CSS Grid.
-- Las tarjetas (`ProductCard`) usan flex/grid internos para alinear título y detalles (estado, precio, categoría) de forma clara.
+  - `ProductManager` centra el contenido y aplica un fondo neutro a toda la vista.
+  - `CategoryFilter` y `ProductList` trabajan con un `max-width` compartido y `margin: 0 auto` para mantenerse centrados en pantallas grandes.
+  - `ProductList` cambia de **columna única** en mobile a **dos columnas** en pantallas grandes usando CSS Grid.
+  - Las tarjetas (`ProductCard`) usan flex/grid internos para alinear título y detalles (estado, precio, categoría) de forma clara.
+  - Los mensajes de estado globales (loading, error, "no products") se muestran centrados, en blanco y en negrita para mantener legibilidad sobre el fondo.
+
+Además, se añadió una **barra de búsqueda** dentro de `CategoryFilter`:
+
+- El input actualiza un estado local `search`.
+- Un `useEffect` con debounce de ~300 ms llama a `onSearchChange(search)` para no disparar requests en cada tecla.
+- `ProductManager` inyecta este valor en `productQuery.search`, que la capa de datos usa para hacer **fulltext match** sobre el nombre (`p.name.toLowerCase().includes(search)`).
+
+Esto permite combinar filtros por categoría con búsqueda por nombre de forma fluida y sin recargas excesivas.
 
 ---
 

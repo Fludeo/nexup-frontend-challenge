@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ProductList } from '../ProuductList/ProductList';
-import { CategoryFilter } from '../CategoryFilter';
+import { CategoryFilter } from '../CategoryFilter/CategoryFilter';
 import { useProducts } from '../../hooks/useProducts';
 import { IProductQuery } from '../../api/products.service';
 import './ProductManager.css';
