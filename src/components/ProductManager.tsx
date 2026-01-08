@@ -5,7 +5,11 @@ import { CategoryFilter } from './CategoryFilter';
 export const ProductManager: React.FC = () => {
   return (
     <div>
-      <CategoryFilter />
+      <CategoryFilter
+        onNewFilters={(filters) => {
+          console.log('filters', filters);
+        }}
+      />
       <ProductList productList={[]} />
     </div>
   );
