@@ -138,3 +138,9 @@ En conjunto, las decisiones de diseño apuntan a:
 - Usar estructuras adecuadas como `Set` para simplificar la lógica de filtros.
 
 Esto deja una base de código que no solo resuelve el challenge, sino que también es entendible, mantenible y lista para evolucionar.
+
+## Posibles mejoras
+
+- El debouncer dentro del componente `CategoryFilter` podria ser un hook reutilizable `useDebounce` al cual se le pasa un callback y el delay
+
+- Se podria pasar un `AbortController` al servicio de productos para poder abortar la llamada en el cleanup del useEffect
