@@ -42,6 +42,8 @@ Al diseñar la solución, el foco estuvo en que cada archivo/module tenga una re
   - `ProductCard` solo se ocupa de **mostrar** un producto (nombre, categoría, precio y estado), delegando el formato de precios a un helper.
   - `ProductList` recibe una lista tipada de `Product` y solo itera/renderiza `ProductCard`.
   - `CategoryFilter` se encarga de la UI y la lógica local de selección de filtros, exponiendo hacia arriba solo las categorías seleccionadas.
+    - No conoce la API ni cómo se aplican esos filtros sobre los datos.
+    - Su única responsabilidad es **agregar o quitar categorías** de un conjunto y devolver la lista resultante de filtros al componente padre.
 
 - **Lógica de negocio / datos**
   - `useProducts` + `products.service` encapsulan la obtención y filtrado de datos, aislando al resto de la app de los detalles de “de dónde vienen los productos”.
