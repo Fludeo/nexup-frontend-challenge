@@ -22,12 +22,28 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
     setAppliedFilters(newFilters);
     onNewFilters([...newFilters]);
   };
+
+  const clearFilters = () => {
+    if (appliedFilters.size === 0) return;
+    setAppliedFilters(new Set());
+    onNewFilters([]);
+  };
   return (
     <div>
       {categories.length > 0 && (
         <div>
           <h2>Categories</h2>
-
+          <button
+            type="button"
+            key="All"
+            style={{
+              backgroundColor: appliedFilters.size === 0 ? 'blue' : 'white',
+              color: appliedFilters.size === 0 ? 'white' : 'black',
+            }}
+            onClick={clearFilters}
+          >
+            All
+          </button>
           {categories.map((category) => (
             <button
               type="button"
