@@ -5,6 +5,11 @@ import pluginReactConfig from "eslint-plugin-react/configs/recommended.js";
 
 
 export default [
+  {
+    rules: {
+      "prettier/prettier": ["error", { endOfLine: "auto" }],
+    }
+  },
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   { languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } } },
   { languageOptions: { globals: globals.browser } },
