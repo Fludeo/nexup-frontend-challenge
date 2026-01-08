@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProductCategory } from '../models/ProductCategory';
 import './CategoryFilter.css';
 
 interface CategoryFilterProps {
   onNewFilters: (filters: ProductCategory[]) => void;
+  onSearchChange: (search: string) => void;
 }
 
 export const CategoryFilter: React.FC<CategoryFilterProps> = ({
   onNewFilters,
+  onSearchChange,
 }) => {
   const [categories] = useState<ProductCategory[]>(
     Object.values(ProductCategory),
@@ -15,6 +17,15 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
   const [appliedFilters, setAppliedFilters] = useState<Set<ProductCategory>>(
     new Set(),
   );
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      onSearchChange(search);
+    }, 300);
+
+    return () => clearTimeout(handler);
+  }, [search, onSearchChange]);
 
   const onFilterChange = (filter: ProductCategory) => {
     const newFilters = new Set(appliedFilters);
@@ -34,6 +45,15 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
       {categories.length > 0 && (
         <div>
           <h2 className="category-filter_title">Categories</h2>
+          <div className="category-filter_search">
+            <input
+              type="text"
+              className="category-filter_search-input"
+              placeholder="Search by name"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
           <div className="category-filter_buttons">
             <button
               type="button"

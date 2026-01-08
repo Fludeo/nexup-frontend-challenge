@@ -8,6 +8,7 @@ import './ProductManager.css';
 export const ProductManager: React.FC = () => {
   const [productQuery, setProductQuery] = useState<IProductQuery>({
     filters: [],
+    search: '',
   });
   const { products, loading, error } = useProducts(productQuery);
 
@@ -15,12 +16,25 @@ export const ProductManager: React.FC = () => {
     <div className="product-manager">
       <CategoryFilter
         onNewFilters={(filters) => {
-          setProductQuery({ filters });
+          setProductQuery((prev) => ({ ...prev, filters }));
+        }}
+        onSearchChange={(search) => {
+          setProductQuery((prev) => {
+            if (prev.search === search) return prev;
+            return { ...prev, search };
+          });
         }}
       />
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {products && loading === false && <ProductList productList={products} />}
+      {loading && <p className="product-manager_message">Loading...</p>}
+      {error && <p className="product-manager_message">Error: {error}</p>}
+      {products && loading === false && products.length > 0 && (
+        <ProductList productList={products} />
+      )}
+      {products && loading === false && products.length === 0 && (
+        <p className="product-manager_message">
+          No products found for the current filters.
+        </p>
+      )}
     </div>
   );
 };

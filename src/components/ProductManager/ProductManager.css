@@ -8,3 +8,8 @@
   padding: 1rem;
   gap: 2rem;
 }
+
+.product-manager .product-manager_message {
+  color: #ffffff;
+  font-weight: 700;
+}
