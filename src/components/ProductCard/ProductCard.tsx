@@ -19,10 +19,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="product-card_item">
           <span className="product-card_label">Status</span>
           <span
-            className="product-card_status"
-            style={{
-              backgroundColor: isActive ? 'green' : 'red',
-            }}
+            className={`product-card_status ${
+              isActive
+                ? 'product-card_status--active'
+                : 'product-card_status--inactive'
+            }`}
           >
             {product.status}
           </span>

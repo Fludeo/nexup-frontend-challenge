@@ -61,6 +61,14 @@
   color: white;
 }
 
+.product-card_status--active {
+  background-color: green;
+}
+
+.product-card_status--inactive {
+  background-color: red;
+}
+
 .product-card_details {
   display: none;
 }
