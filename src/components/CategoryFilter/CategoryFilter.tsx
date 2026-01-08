@@ -44,7 +44,6 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
     <div className="category-filter">
       {categories.length > 0 && (
         <div>
-          <h2 className="category-filter_title">Categories</h2>
           <div className="category-filter_search">
             <input
               type="text"
@@ -54,6 +53,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
+          <h2 className="category-filter_title">Categories</h2>
           <div className="category-filter_buttons">
             <button
               type="button"
