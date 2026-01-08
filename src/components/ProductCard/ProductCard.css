@@ -50,6 +50,10 @@
   color: #555;
 }
 
+.product-card_price {
+  font-weight: 800;
+}
+
 .product-card_status {
   padding: .5rem .5rem;
   border-radius: .3rem;
