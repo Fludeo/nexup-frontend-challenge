@@ -15,6 +15,6 @@ export const getProductList = (query: IProductQuery): Promise<Product[]> => {
           : products;
 
       resolve(filtered);
-    }, 2000);
+    }, 1000);
   });
 };
