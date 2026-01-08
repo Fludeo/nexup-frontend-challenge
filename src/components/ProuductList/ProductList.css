@@ -1,6 +1,14 @@
 .product-list {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .product-list {
+    align-items: center;
+  }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ProductCategory } from '../models/ProductCategory';
+import './CategoryFilter.css';
 
 interface CategoryFilterProps {
   onNewFilters: (filters: ProductCategory[]) => void;
@@ -29,36 +30,39 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
     onNewFilters([]);
   };
   return (
-    <div>
+    <div className="category-filter">
       {categories.length > 0 && (
         <div>
-          <h2>Categories</h2>
-          <button
-            type="button"
-            key="All"
-            style={{
-              backgroundColor: appliedFilters.size === 0 ? 'blue' : 'white',
-              color: appliedFilters.size === 0 ? 'white' : 'black',
-            }}
-            onClick={clearFilters}
-          >
-            All
-          </button>
-          {categories.map((category) => (
+          <h2 className="category-filter_title">Categories</h2>
+          <div className="category-filter_buttons">
             <button
               type="button"
-              key={category}
-              style={{
-                backgroundColor: appliedFilters.has(category)
-                  ? 'blue'
-                  : 'white',
-                color: appliedFilters.has(category) ? 'white' : 'black',
-              }}
-              onClick={() => onFilterChange(category)}
+              key="All"
+              className={`category-filter_button ${
+                appliedFilters.size === 0
+                  ? 'category-filter_button--active'
+                  : ''
+              }`}
+              onClick={clearFilters}
             >
-              {category}
+              All
             </button>
-          ))}
+            {categories.map((category) => {
+              const isActive = appliedFilters.has(category);
+              return (
+                <button
+                  type="button"
+                  key={category}
+                  className={`category-filter_button ${
+                    isActive ? 'category-filter_button--active' : ''
+                  }`}
+                  onClick={() => onFilterChange(category)}
+                >
+                  {category}
+                </button>
+              );
+            })}
+          </div>
         </div>
       )}
     </div>
